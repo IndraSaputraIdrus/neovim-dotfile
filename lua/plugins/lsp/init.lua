@@ -10,12 +10,12 @@ return {
       dependecies = { "mason.nvim" },
       event = "BufReadPre", -- Lazy load saat buffer dibuka
       opts = {
-        ensure_installed = { 'lua_ls', 'ts_ls'}
+        ensure_installed = { 'lua_ls', 'ts_ls', 'svelte'}
       }
     },
     {
       "neovim/nvim-lspconfig",
-        event = { "VeryLazy", "BufReadPre", "BufNewFile" }, -- Lazy load saat buffer dibaca atau dibuat
+      event = { "BufReadPre", "BufNewFile" }, -- Lazy load saat buffer dibaca atau dibuat
       config = function()
         local lspconfig = require('lspconfig')
 
@@ -73,6 +73,38 @@ return {
               flags = {
                   debounce_text_changes = 150, -- Kurangi frekuensi update text untuk performa
               },
+        })
+
+
+        lspconfig.svelte.setup({
+            on_attach = on_attach,
+            init_options = {
+                configuration = {
+                    svelte = {
+                        plugin = {
+                            html = {
+                                hover = {
+                                    documentation = false, -- Matikan dokumentasi hover untuk menghemat memori
+                                },
+                            },
+                            css = {
+                                completions = false, -- Nonaktifkan auto-complete CSS jika tidak digunakan
+                            },
+                        },
+                    },
+                },
+            },
+            settings = {
+                svelte = {
+                    enable = true,
+                    languageServer = {
+                        maxMemory = 512, -- Batasi penggunaan memori ke 512MB
+                    },
+                },
+            },
+            flags = {
+                debounce_text_changes = 300, -- Kurangi frekuensi update text untuk performa
+            },
         })
 
       end

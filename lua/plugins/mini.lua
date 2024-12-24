@@ -27,14 +27,4 @@ return {
       },
     },
   },
-
-  {
-    'echasnovski/mini.trailspace',
-    version = '*',
-    opts = {}, init = function()
-      vim.api.nvim_create_user_command('Trim', function()
-          MiniTrailspace.trim()
-      end, {})
-    end
-  },
 }

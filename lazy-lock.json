@@ -7,6 +7,8 @@
   "mini.trailspace": { "branch": "main", "commit": "3a328e62559c33014e422fb9ae97afc4208208b1" },
   "nvim-lspconfig": { "branch": "master", "commit": "c580f34bc5fdca8aaf737a9ab8a5d775cb940e57" },
   "nvim-tree.lua": { "branch": "master", "commit": "68fc4c20f5803444277022c681785c5edd11916d" },
+  "nvim-treesitter": { "branch": "master", "commit": "096babebf6daef2a046650883082ed2b3dcc5b67" },
+  "nvim-ts-autotag": { "branch": "main", "commit": "1cca23c9da708047922d3895a71032bc0449c52d" },
   "nvim-web-devicons": { "branch": "master", "commit": "c1a86a2c386c55efc02fa2ec2c3a914af653d954" },
   "poimandres.nvim": { "branch": "main", "commit": "a488957d803943a4201ac3b774913fcafa9e6b3a" }
 }
