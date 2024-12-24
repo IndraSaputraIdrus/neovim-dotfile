@@ -33,9 +33,13 @@ return {
 				buf_map("n", "<leader>ca", vim.lsp.buf.code_action, { desc = "Code Action" })
 			end
 
+			-- auto completion
+			local capabilities = require("blink.cmp").get_lsp_capabilities()
+
 			-- lua ls
 			lspconfig.lua_ls.setup({
 				on_attach = on_attach,
+				capabilites = capabilities,
 				settings = {
 					Lua = {
 						runtime = {
@@ -54,8 +58,10 @@ return {
 				},
 			})
 
+			-- typescript
 			lspconfig.ts_ls.setup({
 				on_attach = on_attach,
+				capabilites = capabilities,
 				init_options = {
 					hostInfo = "neovim",
 					maxTsServerMemory = 256, -- Batas memori untuk tsserver
@@ -74,8 +80,10 @@ return {
 				},
 			})
 
+			-- svelte
 			lspconfig.svelte.setup({
 				on_attach = on_attach,
+				capabilites = capabilities,
 				init_options = {
 					configuration = {
 						svelte = {
