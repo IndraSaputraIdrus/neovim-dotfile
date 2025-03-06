@@ -20,6 +20,8 @@ return {
 			svelte = { "prettierd" },
 			typescript = { "prettierd" },
 			javascript = { "prettierd" },
+			typescriptreact = { "prettierd" },
+			javascriptreact = { "prettierd" },
 		},
 	},
 }

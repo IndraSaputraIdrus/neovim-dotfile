@@ -10,7 +10,7 @@ return {
 		dependecies = { "mason.nvim" },
 		event = "BufReadPre", -- Lazy load saat buffer dibuka
 		opts = {
-			ensure_installed = { "lua_ls", "ts_ls", "svelte" },
+			ensure_installed = { "lua_ls", "ts_ls", "svelte", "gopls" },
 		},
 	},
 	{
@@ -64,7 +64,7 @@ return {
 				capabilites = capabilities,
 				init_options = {
 					hostInfo = "neovim",
-					maxTsServerMemory = 256, -- Batas memori untuk tsserver
+					maxTsServerMemory = 512 -- 256 , -- Batas memori untuk tsserver
 				},
 				handlers = {
 					-- Matikan fitur format jika Anda menggunakan plugin formatter lain
@@ -111,6 +111,12 @@ return {
 				flags = {
 					debounce_text_changes = 300, -- Kurangi frekuensi update text untuk performa
 				},
+			})
+
+      -- golang
+			lspconfig.gopls.setup({
+				on_attach = on_attach,
+				capabilites = capabilities,
 			})
 		end,
 	},
