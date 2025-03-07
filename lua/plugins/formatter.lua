@@ -15,13 +15,22 @@ return {
 		},
 	},
 	opts = {
+		formatters = {
+			prettier = {
+				require_cwd = true,
+			},
+			biome = {
+				require_cwd = true,
+			},
+		},
 		formatters_by_ft = {
 			lua = { "stylua" },
 			svelte = { "prettierd" },
-			typescript = { "prettierd" },
-			javascript = { "prettierd" },
+			typescript = { "biome" },
+			javascript = { "biome" },
 			typescriptreact = { "prettierd" },
 			javascriptreact = { "prettierd" },
+			css = { "biome" },
 		},
 	},
 }

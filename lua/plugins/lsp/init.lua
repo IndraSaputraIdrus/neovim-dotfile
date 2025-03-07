@@ -1,3 +1,5 @@
+local servers = { "lua_ls", "ts_ls", "biome", "svelte", "gopls" }
+
 return {
 	{
 		"williamboman/mason.nvim",
@@ -10,7 +12,8 @@ return {
 		dependecies = { "mason.nvim" },
 		event = "BufReadPre", -- Lazy load saat buffer dibuka
 		opts = {
-			ensure_installed = { "lua_ls", "ts_ls", "svelte", "gopls" },
+			ensure_installed = servers,
+			automatic_instalation = true,
 		},
 	},
 	{
@@ -36,88 +39,9 @@ return {
 			-- auto completion
 			local capabilities = require("blink.cmp").get_lsp_capabilities()
 
-			-- lua ls
-			lspconfig.lua_ls.setup({
-				on_attach = on_attach,
-				capabilites = capabilities,
-				settings = {
-					Lua = {
-						runtime = {
-							version = "LuaJIT",
-						},
-						diagnostics = {
-							globals = { "vim" }, -- Hindari error untuk `vim` global
-						},
-						workspace = {
-							library = vim.api.nvim_get_runtime_file("", true),
-						},
-						telemetry = {
-							enable = false, -- Matikan telemetry untuk performa
-						},
-					},
-				},
-			})
-
-			-- typescript
-			lspconfig.ts_ls.setup({
-				on_attach = on_attach,
-				capabilites = capabilities,
-				init_options = {
-					hostInfo = "neovim",
-					maxTsServerMemory = 512 -- 256 , -- Batas memori untuk tsserver
-				},
-				handlers = {
-					-- Matikan fitur format jika Anda menggunakan plugin formatter lain
-					["textDocument/formatting"] = function() end,
-				},
-				settings = {
-					completions = {
-						completeFunctionCalls = true,
-					},
-				},
-				flags = {
-					debounce_text_changes = 150, -- Kurangi frekuensi update text untuk performa
-				},
-			})
-
-			-- svelte
-			lspconfig.svelte.setup({
-				on_attach = on_attach,
-				capabilites = capabilities,
-				init_options = {
-					configuration = {
-						svelte = {
-							plugin = {
-								html = {
-									hover = {
-										documentation = false, -- Matikan dokumentasi hover untuk menghemat memori
-									},
-								},
-								css = {
-									completions = false, -- Nonaktifkan auto-complete CSS jika tidak digunakan
-								},
-							},
-						},
-					},
-				},
-				settings = {
-					svelte = {
-						enable = true,
-						languageServer = {
-							maxMemory = 512, -- Batasi penggunaan memori ke 512MB
-						},
-					},
-				},
-				flags = {
-					debounce_text_changes = 300, -- Kurangi frekuensi update text untuk performa
-				},
-			})
-
-      -- golang
-			lspconfig.gopls.setup({
-				on_attach = on_attach,
-				capabilites = capabilities,
-			})
+			for _, name in ipairs(servers) do
+				require("plugins.lsp.servers." .. name).setup(lspconfig, on_attach, capabilities)
+			end
 		end,
 	},
 }
