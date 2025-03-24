@@ -1,13 +1,17 @@
 return {
 	"stevearc/conform.nvim",
 	dependencies = { "mason.nvim" },
-	lazy = true,
+	event = { "BufReadPre", "BufNewFile" }, -- Lazy load
 	cmd = "ConformInfo",
 	keys = {
 		{
 			"<leader>fm",
 			function()
-				require("conform").format()
+				require("conform").format({
+					lsp_fallback = true,
+					async = false,
+					timeout_ms = 500,
+				})
 				print("formatting")
 			end,
 			mode = { "n", "v" },
@@ -26,8 +30,8 @@ return {
 		formatters_by_ft = {
 			lua = { "stylua" },
 			svelte = { "prettierd" },
-			typescript = { "biome" },
-			javascript = { "biome" },
+			typescript = { "biome", "prettierd" },
+			javascript = { "biome", "prettierd" },
 			typescriptreact = { "prettierd" },
 			javascriptreact = { "prettierd" },
 			css = { "biome" },

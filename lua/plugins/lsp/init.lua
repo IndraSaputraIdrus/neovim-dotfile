@@ -1,4 +1,4 @@
-local servers = { "lua_ls", "ts_ls", "biome", "svelte", "gopls" }
+local servers = { "lua_ls", "biome", "svelte", "gopls" }
 
 return {
 	{

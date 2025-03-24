@@ -20,17 +20,17 @@ M.setup = function(lspconfig, on_attach, capabilities)
 				},
 			},
 		},
-		settings = {
-			svelte = {
-				enable = true,
-				languageServer = {
-					maxMemory = 512, -- Batasi penggunaan memori ke 512MB
-				},
-			},
-		},
-		flags = {
-			debounce_text_changes = 300, -- Kurangi frekuensi update text untuk performa
-		},
+		-- settings = {
+		-- 	svelte = {
+		-- 		enable = true,
+		-- 		languageServer = {
+		-- 			maxMemory = 512, -- Batasi penggunaan memori ke 512MB
+		-- 		},
+		-- 	},
+		-- },
+		-- flags = {
+		-- 	debounce_text_changes = 300, -- Kurangi frekuensi update text untuk performa
+		-- },
 	})
 end
 
