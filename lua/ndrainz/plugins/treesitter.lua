@@ -1,29 +1,26 @@
 return {
-	{
-		"nvim-treesitter/nvim-treesitter",
-		build = ":TSUpdate",
-		event = { "BufReadPost", "BufNewFile" }, -- load when opening a file
-		cmd = { "TSUpdateSync", "TSUpdate", "TSInstall" },
+  {
+    'nvim-treesitter/nvim-treesitter',
+    build = ':TSUpdate',
+    main = 'nvim-treesitter.configs',
     dependencies = {
       {
-        "windwp/nvim-ts-autotag",
-        event = { "BufReadPost", "BufNewFile" }, -- load when opening a file
+        'windwp/nvim-ts-autotag',
         opts = {},
       },
     },
-		keys = {
-			{ "<c-space>", desc = "Increment Selection" },
-			{ "<bs>", desc = "Decrement Selection", mode = "x" },
-		},
-		config = function()
-			require("nvim-treesitter.configs").setup({
-				highlight = {
-					enable = true,
-					additional_vim_regex_highlighting = false, -- Matikan highlight regex default
-				},
-				indent = { enable = true },
-				ensure_installed = { "javascript", "typescript", "html", "svelte", "tsx", "css" },
-			})
-		end,
-	},
+    keys = {
+      { '<c-space>', desc = 'Increment Selection' },
+      { '<bs>', desc = 'Decrement Selection', mode = 'x' },
+    },
+    opts = {
+      highlight = {
+        enable = true,
+        additional_vim_regex_highlighting = false, -- Matikan highlight regex default
+      },
+      indent = { enable = true },
+      ensure_installed = { 'javascript', 'typescript', 'html', 'svelte', 'tsx', 'css' },
+      auto_install = true,
+    },
+  },
 }

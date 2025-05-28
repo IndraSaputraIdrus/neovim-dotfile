@@ -94,7 +94,7 @@ vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
 
-vim.o.tabstop = 4 -- Number of spaces tabs count for
-vim.o.shiftround = true -- Round indent
-vim.o.shiftwidth = 4 -- Size of an indent
+-- vim.o.tabstop = 4 -- Number of spaces tabs count for
+-- vim.o.shiftround = true -- Round indent
+-- vim.o.shiftwidth = 4 -- Size of an indent
 -- KICKSTART END

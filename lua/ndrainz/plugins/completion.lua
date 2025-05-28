@@ -1,19 +1,40 @@
 return {
   'saghen/blink.cmp',
-  -- optional: provides snippets for the snippet source
   dependencies = 'rafamadriz/friendly-snippets',
+  event = { 'VimEnter' },
+  version = '1.*',
+  dependencies = {
+    -- Snippet Engine
+    {
+      'L3MON4D3/LuaSnip',
+      version = '2.*',
+      build = (function()
+        -- Build Step is needed for regex support in snippets.
+        -- This step is not supported in many windows environments.
+        -- Remove the below condition to re-enable on windows.
+        if vim.fn.has 'win32' == 1 or vim.fn.executable 'make' == 0 then
+          return
+        end
+        return 'make install_jsregexp'
+      end)(),
+      dependencies = {
+        -- `friendly-snippets` contains a variety of premade snippets.
+        --    See the README about individual language/framework/plugin snippets:
+        --    https://github.com/rafamadriz/friendly-snippets
+        {
+          'rafamadriz/friendly-snippets',
+          config = function()
+            require('luasnip.loaders.from_vscode').lazy_load()
+          end,
+        },
+      },
+      opts = {},
+    },
+    'folke/lazydev.nvim',
+  },
 
-  event = { 'BufReadPre', 'BufNewFile' }, -- Lazy load
-
-  -- use a release tag to download pre-built binaries
-  version = '*',
-  -- AND/OR build from source, requires nightly: https://rust-lang.github.io/rustup/concepts/channels.html#working-with-nightly-rust
-  -- build = 'cargo build --release',
-  -- If you use nix, you can build from source using latest nightly rust with:
-  -- build = 'nix run .#build-plugin',
-
-  ---@module 'blink.cmp'
-  ---@type blink.cmp.Config
+  --- @module 'blink.cmp'
+  --- @type blink.cmp.Config
   opts = {
     -- 'default' for mappings similar to built-in completion
     -- 'super-tab' for mappings similar to vscode (tab to accept, arrow keys to navigate)
@@ -23,6 +44,10 @@ return {
 
     -- Don't show completion menu automatically in cmdline mode
     completion = {
+      -- By default, you may press `<c-space>` to show the documentation.
+      -- Optionally, set `auto_show = true` to show the documentation after a delay.
+      documentation = { auto_show = false, auto_show_delay_ms = 500 },
+
       menu = {
         auto_show = function(ctx)
           return ctx.mode ~= 'cmdline'
@@ -44,7 +69,23 @@ return {
     -- elsewhere in your config, without redefining it, due to `opts_extend`
     sources = {
       default = { 'lsp', 'path', 'snippets', 'buffer' },
+      providers = {
+        lazydev = { module = 'lazydev.integrations.blink', score_offset = 100 },
+      },
     },
+
+    snippets = { preset = 'luasnip' },
+
+    -- Blink.cmp includes an optional, recommended rust fuzzy matcher,
+    -- which automatically downloads a prebuilt binary when enabled.
+    --
+    -- By default, we use the Lua implementation instead, but you may enable
+    -- the rust implementation via `'prefer_rust_with_warning'`
+    --
+    -- See :h blink-cmp-config-fuzzy for more information
+    fuzzy = { implementation = 'lua' },
+
+    -- Shows a signature help window while you type arguments for a function
+    signature = { enable = true },
   },
-  opts_extend = { 'sources.default' },
 }
