@@ -7,11 +7,11 @@ return {
       {
         'windwp/nvim-ts-autotag',
         opts = {},
+        keys = {
+          { '<c-space>', desc = 'Increment Selection' },
+          { '<bs>', desc = 'Decrement Selection', mode = 'x' },
+        },
       },
-    },
-    keys = {
-      { '<c-space>', desc = 'Increment Selection' },
-      { '<bs>', desc = 'Decrement Selection', mode = 'x' },
     },
     opts = {
       highlight = {

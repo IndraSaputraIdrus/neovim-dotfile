@@ -26,11 +26,11 @@ vim.opt.rtp:prepend(lazypath)
 require('lazy').setup {
   spec = {
     -- import your plugins
-    {
-      'NMAC427/guess-indent.nvim', -- Detect tabstop and shiftwidth automatically
-      event = "BufReadPre",
-      opts = {},
-    },
+    -- {
+    --   'NMAC427/guess-indent.nvim', -- Detect tabstop and shiftwidth automatically
+    --   event = "BufReadPre",
+    --   opts = {},
+    -- },
     {
       import = 'ndrainz.plugins',
     },

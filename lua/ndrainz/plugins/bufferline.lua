@@ -26,6 +26,9 @@ return {
           highlight = 'Directory',
           text_align = 'center',
         },
+        {
+          filetype = 'snacks_layout_box',
+        },
       },
     },
   },

@@ -66,8 +66,23 @@ vim.o.splitbelow = true
 --  It is very similar to `vim.o` but offers an interface for conveniently interacting with tables.
 --   See `:help lua-options`
 --   and `:help lua-options-guide`
-vim.o.list = true
-vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
+-- vim.o.list = true
+-- vim.opt.listchars = {
+--   tab = '│',
+--   trail = '·',
+--   nbsp = '␣',
+-- }
+--
+
+-- for Indent line (source lazyVim)
+vim.opt.fillchars = {
+  foldopen = "",
+  foldclose = "",
+  fold = " ",
+  foldsep = " ",
+  diff = "╱",
+  eob = " ",
+}
 
 -- Preview substitutions live, as you type!
 vim.o.inccommand = 'split'
@@ -83,7 +98,6 @@ vim.o.scrolloff = 10
 -- See `:help 'confirm'`
 vim.o.confirm = true
 
-
 -- optionally enable 24-bit colour
 vim.o.termguicolors = true
 
@@ -93,8 +107,8 @@ vim.o.expandtab = true -- Use spaces instead of tabs
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
-
--- vim.o.tabstop = 4 -- Number of spaces tabs count for
--- vim.o.shiftround = true -- Round indent
--- vim.o.shiftwidth = 4 -- Size of an indent
+vim.o.wrap = false
+vim.o.tabstop = 4 -- Number of spaces tabs count for
+vim.o.shiftround = true -- Round indent
+vim.o.shiftwidth = 4 -- Size of an indent
 -- KICKSTART END

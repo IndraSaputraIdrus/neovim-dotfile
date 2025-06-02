@@ -34,3 +34,5 @@ map("n", "<S-l>", "<cmd>bnext<cr>", { desc = "Next Buffer" })
 
 -- term
 map('t', 'jk', '<C-\\><C-n>', { desc = 'Use jk to enter in terminal normal mode' })
+
+

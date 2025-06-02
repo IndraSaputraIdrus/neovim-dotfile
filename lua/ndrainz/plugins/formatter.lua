@@ -29,6 +29,7 @@ return {
       typescriptreact = { 'prettierd' },
       javascriptreact = { 'prettierd' },
       css = { 'biome' },
+      nix = { 'nixfmt' },
     },
   },
 }
