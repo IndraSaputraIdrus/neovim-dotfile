@@ -23,6 +23,8 @@ return {
     linter.linters_by_ft['javascriptreact'] = { 'eslint_d', 'biomejs' }
     linter.linters_by_ft['typescriptreact'] = { 'eslint_d', 'biomejs' }
 
+    linter.linters_by_ft['text'] = nil
+
     local linter_autogroup = vim.api.nvim_create_augroup('lint', { clear = true })
 
     vim.api.nvim_create_autocmd({ 'BufWritePost', 'InsertLeave' }, {
