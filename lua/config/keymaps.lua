@@ -1,6 +1,5 @@
 local map = vim.keymap.set
 
-
 -- Clear highlights on search when pressing <Esc> in normal mode
 --  See `:help hlsearch`
 map('n', '<Esc>', '<cmd>nohlsearch<CR>')
@@ -33,6 +32,13 @@ map("n", "<S-h>", "<cmd>bprevious<cr>", { desc = "Prev Buffer" })
 map("n", "<S-l>", "<cmd>bnext<cr>", { desc = "Next Buffer" })
 
 -- term
-map('t', 'jk', '<C-\\><C-n>', { desc = 'Use jk to enter in terminal normal mode' })
+-- map('t', 'jk', '<C-\\><C-n>', { desc = 'Use jk to enter in terminal normal mode' })
 
+-- Picker
+map("n", "<leader>ff", "<CMD>:Pick files<CR>", { desc = "Open file picker" })
 
+-- LSP
+map("n", "<leader>fm", vim.lsp.buf.format, { desc = "Open file picker" })
+
+-- MiniFiles
+map('n', '-', '<CMD>lua MiniFiles.open()<CR>', { desc = 'Open File Manager' })

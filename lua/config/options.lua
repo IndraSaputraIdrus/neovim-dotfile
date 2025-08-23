@@ -111,4 +111,10 @@ vim.o.wrap = false
 vim.o.tabstop = 4 -- Number of spaces tabs count for
 vim.o.shiftround = true -- Round indent
 vim.o.shiftwidth = 4 -- Size of an indent
+
+vim.o.winborder = 'rounded'
+
+-- Disable select first in autocomplete
+vim.cmd("set completeopt+=noselect")
+
 -- KICKSTART END
