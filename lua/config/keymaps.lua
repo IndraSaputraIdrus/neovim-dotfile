@@ -33,7 +33,7 @@ map("n", "<S-l>", "<cmd>bnext<cr>", { desc = "Next Buffer" })
 map("n", "<leader>x", "<cmd>bdelete<cr>", { desc = "Delete Buffer" })
 
 -- term
--- map('t', 'jk', '<C-\\><C-n>', { desc = 'Use jk to enter in terminal normal mode' })
+map('t', '<esc>', '<C-\\><C-n>', { desc = 'Use jk to enter in terminal normal mode' })
 
 -- Picker
 map("n", "<leader>ff", "<CMD>:Pick files<CR>", { desc = "Open file picker" })
@@ -43,3 +43,16 @@ map("n", "<leader>fm", vim.lsp.buf.format, { desc = "Open file picker" })
 
 -- MiniFiles
 map('n', '-', '<CMD>lua MiniFiles.open()<CR>', { desc = 'Open File Manager' })
+
+
+-- MiniCompletion
+_G.cr_action = function()
+    -- If there is selected item in popup, accept it with <C-y>
+    if vim.fn.complete_info()['selected'] ~= -1 then return '\25' end
+    -- Fall back to plain `<CR>`. You might want to customize according
+    -- to other plugins. For example if 'mini.pairs' is set up, replace
+    -- next line with `return MiniPairs.cr()`
+    return '\r'
+end
+map('i', '<CR>', 'v:lua.cr_action()', { expr = true })
+
