@@ -1,37 +1,36 @@
 return {
     {
-        "echasnovski/mini.icons",
+        "nvim-mini/mini.icons",
         lazy = false,
-        opts = {},
-        -- config = function()
-        --     local mini_icons = require("mini.icons")
-        --     mini_icons.setup()
-        --     mini_icons.tweak_lsp_kind()
-        -- end,
+        config = function()
+            local mini_icons = require("mini.icons")
+            mini_icons.setup()
+            mini_icons.tweak_lsp_kind()
+        end,
     },
     {
-        "echasnovski/mini.pick",
+        "nvim-mini/mini.pick",
         version = "*",
         opts = {},
     },
     {
-        'echasnovski/mini.tabline',
+        'nvim-mini/mini.tabline',
         version = '*',
         opts = {}
     },
     {
-        'echasnovski/mini.files',
+        'nvim-mini/mini.files',
         version = '*',
         opts = {}
     },
     {
-        'echasnovski/mini.ai',
+        'nvim-mini/mini.ai',
         version = '*',
         event = "VeryLazy",
         opts = {}
     },
     {
-        'echasnovski/mini.statusline',
+        'nvim-mini/mini.statusline',
         version = '*',
         opts = {}
     },

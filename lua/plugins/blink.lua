@@ -1,8 +1,5 @@
 return {
     'saghen/blink.cmp',
-    dependencies = {
-        { "echasnovski/mini.icons" },
-    },
     version = "1.*",
     opts = {
         keymap = {
@@ -13,7 +10,7 @@ return {
                 draw = {
                     columns = {
                         { "label",     "label_description", gap = 1 },
-                        { "kind_icon", "kind", gap = 1 }
+                        { "kind_icon", "kind",              gap = 1 }
                     },
                     components = {
                         kind_icon = {
@@ -25,10 +22,12 @@ return {
                                 local _, hl, _ = require("mini.icons").get("lsp", ctx.kind)
                                 return hl
                             end,
-                            kind = function(ctx)
+                        },
+                        kind = {
+                            hightlight = function(ctx)
                                 local _, hl, _ = require("mini.icons").get("lsp", ctx.kind)
                                 return hl
-                            end
+                            end,
                         }
                     }
                 },
