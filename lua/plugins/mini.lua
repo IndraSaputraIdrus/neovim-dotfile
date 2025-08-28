@@ -2,11 +2,12 @@ return {
     {
         "echasnovski/mini.icons",
         lazy = false,
-        config = function()
-            local mini_icons = require("mini.icons")
-            mini_icons.setup()
-            mini_icons.tweak_lsp_kind()
-        end,
+        opts = {},
+        -- config = function()
+        --     local mini_icons = require("mini.icons")
+        --     mini_icons.setup()
+        --     mini_icons.tweak_lsp_kind()
+        -- end,
     },
     {
         "echasnovski/mini.pick",
@@ -22,11 +23,6 @@ return {
         'echasnovski/mini.files',
         version = '*',
         opts = {}
-    },
-    {
-        'echasnovski/mini.completion',
-        version = '*',
-        opts = {},
     },
     {
         'echasnovski/mini.ai',
