@@ -13,14 +13,6 @@ return {
         },
     },
     opts = {
-        formatters = {
-            prettierd = {
-                require_cwd = true,
-            },
-            biome = {
-                require_cwd = true,
-            },
-        },
         formatters_by_ft = {
             lua = { 'stylua' },
             svelte = { 'prettierd' },

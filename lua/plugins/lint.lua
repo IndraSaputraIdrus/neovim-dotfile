@@ -8,11 +8,11 @@ return {
             javascript = { "biomejs" },
             json = { "biomejs" },
             svelte = { "eslint_d" },
-            lua = { "luacheck" },
+            -- lua = { "luacheck" },
         }
 
         vim.api.nvim_create_autocmd({ 'BufWritePost', 'InsertLeave' }, {
-            group = vim.api.nvim_create_augroup('lint', { clear = true }),
+            group = vim.api.nvim_create_augroup('indra.config', { clear = true }),
             callback = function()
                 if vim.bo.modifiable then
                     linter.try_lint()
