@@ -4,8 +4,8 @@ return {
         local linter = require("lint")
 
         linter.linters_by_ft = {
-            typescript = { "biomejs" },
-            javascript = { "biomejs" },
+            typescript = { "oxlint" },
+            javascript = { "oxlint" },
             json = { "biomejs" },
             svelte = { "eslint_d" },
             -- lua = { "luacheck" },
