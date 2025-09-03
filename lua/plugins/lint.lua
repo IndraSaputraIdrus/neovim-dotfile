@@ -11,13 +11,15 @@ return {
             -- lua = { "luacheck" },
         }
 
-        vim.api.nvim_create_autocmd({ 'BufWritePost', 'InsertLeave' }, {
-            group = vim.api.nvim_create_augroup('indra.config', { clear = true }),
-            callback = function()
-                if vim.bo.modifiable then
-                    linter.try_lint()
-                end
-            end,
-        })
+        -- vim.api.nvim_create_autocmd({ 'BufWritePost', 'InsertLeave' }, {
+        --     group = vim.api.nvim_create_augroup('indra.config', { clear = true }),
+        --     callback = function()
+        --         if vim.bo.modifiable then
+        --             linter.try_lint()
+        --         end
+        --     end,
+        -- })
+
+        -- vim.lsp.enable({ "eslint" })
     end,
 }
