@@ -76,12 +76,12 @@ vim.o.splitbelow = true
 
 -- for indent line (source lazyvim)
 vim.opt.fillchars = {
-  foldopen = "",
-  foldclose = "",
-  fold = " ",
-  foldsep = " ",
-  diff = "╱",
-  eob = " ",
+  foldopen = '',
+  foldclose = '',
+  fold = ' ',
+  foldsep = ' ',
+  diff = '╱',
+  eob = ' ',
 }
 
 -- preview substitutions live, as you type!
@@ -115,6 +115,12 @@ vim.o.shiftwidth = 4 -- size of an indent
 vim.o.winborder = 'rounded'
 
 -- disable select first in autocomplete
-vim.cmd("set completeopt+=noselect")
+vim.cmd 'set completeopt+=noselect'
+
+-- Diagnostics
+vim.diagnostic.config {
+  virtual_text = true,
+  underline = { severity = vim.diagnostic.severity.ERROR },
+}
 
 -- kickstart end
