@@ -95,12 +95,28 @@ later(function()
     source = 'stevearc/conform.nvim',
   }
 
+  -- Run the first available formatter followed by more formatters
+  local function first(bufnr, ...)
+    local conform = require 'conform'
+    for i = 1, select('#', ...) do
+      local formatter = select(i, ...)
+      if conform.get_formatter_info(formatter, bufnr).available then
+        return formatter
+      end
+    end
+    return select(1, ...)
+  end
+
   require('conform').setup {
     formatters_by_ft = {
       lua = { 'stylua' },
       svelte = { 'prettierd' },
-      typescript = { 'biome', 'biome-organize-imports', 'prettierd' },
-      javascript = { 'biome', 'biome-organize-imports', 'prettierd' },
+      typescript = function(bufnr)
+        return { first(bufnr, 'biome', 'prettierd'), 'biome-organize-imports' }
+      end,
+      javascript= function(bufnr)
+        return { first(bufnr, 'biome', 'prettierd'), 'biome-organize-imports' }
+      end,
       typescriptreact = { 'prettierd' },
       javascriptreact = { 'prettierd' },
       css = { 'biome' },
@@ -109,7 +125,7 @@ later(function()
     },
   }
 
-  vim.keymap.set('n', '<leader>fm', "<cmd>lua require('conform').format()<cr>", { desc = 'Format with conform' })
+  vim.keymap.set('n', '<leader>fm', "<cmd>lua require('conform').format({ lsp_format = 'fallback', async = true })<cr>", { desc = 'Format with conform' })
 end)
 
 -- Auto completion
@@ -142,14 +158,14 @@ later(function()
 
   local lint = require 'lint'
   lint.linters_by_ft = {
-    json = 'biomejs',
-    javascript = 'biomejs',
-    typescript = 'biomejs',
-    svelte = 'eslint_d',
+    json = { 'biomejs' },
+    javascript = { 'biomejs' },
+    typescript = { 'biomejs' },
+    svelte = { 'eslint_d' },
   }
 
   local lint_augroup = vim.api.nvim_create_augroup('lint', { clear = true })
-  vim.api.nvim_create_autocmd({ 'BufWritePost' }, {
+  vim.api.nvim_create_autocmd('BufWritePost', {
     group = lint_augroup,
     callback = function()
       if vim.bo.modifiable then
