@@ -10,6 +10,12 @@ map('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]ui
 -- Exit from insert mode
 map("i", "jk", "<ESC>", { desc = "Exic insert mode", silent = true })
 
+-- better up/down
+map({ "n", "x" }, "j", "v:count == 0 ? 'gj' : 'j'", { desc = "Down", expr = true, silent = true })
+map({ "n", "x" }, "<Down>", "v:count == 0 ? 'gj' : 'j'", { desc = "Down", expr = true, silent = true })
+map({ "n", "x" }, "k", "v:count == 0 ? 'gk' : 'k'", { desc = "Up", expr = true, silent = true })
+map({ "n", "x" }, "<Up>", "v:count == 0 ? 'gk' : 'k'", { desc = "Up", expr = true, silent = true })
+
 -- Keybinds to make split navigation easier.
 --  Use CTRL+<hjkl> to switch between windows
 --
@@ -34,16 +40,3 @@ map("n", "<leader>x", "<cmd>bdelete<cr>", { desc = "Delete Buffer" })
 
 -- term
 map('t', '<esc>', '<C-\\><C-n>', { desc = 'Use jk to enter in terminal normal mode' })
-
-
--- -- MiniCompletion
--- _G.cr_action = function()
---     -- If there is selected item in popup, accept it with <C-y>
---     if vim.fn.complete_info()['selected'] ~= -1 then return '\25' end
---     -- Fall back to plain `<CR>`. You might want to customize according
---     -- to other plugins. For example if 'mini.pairs' is set up, replace
---     -- next line with `return MiniPairs.cr()`
---     return '\r'
--- end
--- map('i', '<CR>', 'v:lua.cr_action()', { expr = true })
---

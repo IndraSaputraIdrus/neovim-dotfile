@@ -19,9 +19,9 @@ end
 require('mini.deps').setup { path = { package = path_package } }
 
 -- Load all plugins
-require("plugins.mini")
-require("plugins.treesitter")
 require("plugins.lsp")
+require("plugins.treesitter")
+require("plugins.mini")
 require("plugins.formatting")
 require("plugins.autocomplete")
 require("plugins.linting")
