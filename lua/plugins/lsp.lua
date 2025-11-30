@@ -17,23 +17,20 @@ return {
         underline = { severity = vim.diagnostic.severity.ERROR },
       })
 
-      vim.lsp.enable({
+      local servers = {
         'lua_ls',
-        'ts_ls',
+        'vtsls',
         'svelte',
         'biome',
         'gopls',
-      })
+      }
+
+      vim.lsp.enable(servers)
     end,
   },
   {
     'j-hui/fidget.nvim',
     event = 'LazyFile',
-    opts = {},
-  },
-  {
-    'mason-org/mason.nvim',
-    event = 'VeryLazy',
     opts = {},
   },
 }

@@ -1,4 +1,4 @@
-require("config.options")
-require("config.lazy")
--- Load keymap paling akhir
-require("config.keymaps")
+require('config.options')
+require('config.lazy')
+require('config.keymaps')
+require('config.autocmd')

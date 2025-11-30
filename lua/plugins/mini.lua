@@ -8,7 +8,11 @@ return {
       require('mini.ai').setup()
       require('mini.pick').setup()
       require('mini.extra').setup()
+
       require('mini.icons').setup()
+      --- @diagnostic disable-next-line: undefined-global
+      MiniIcons.mock_nvim_web_devicons()
+
       require('mini.statusline').setup()
       require('mini.tabline').setup()
     end,

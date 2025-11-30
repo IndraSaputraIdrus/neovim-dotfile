@@ -15,21 +15,13 @@ return {
     formatters_by_ft = {
       lua = { 'stylua' },
       json = { 'biome' },
-      typescript = { 'biome', 'prettierd', 'biome-organize-imports' },
+      html = { 'biome' },
+      javascript = { 'biome', 'prettierd', 'biome-organize-imports' },
       typescript = { 'biome', 'prettierd', 'biome-organize-imports' },
       go = { 'gofmt' },
     },
     formatters = {
       injected = { options = { ignore_errors = true } },
-      biome = {
-        require_cwd = true,
-      },
-      prettierd = {
-        require_cwd = true,
-      },
-      ['biome-organize-imports'] = {
-        require_cwd = true,
-      },
     },
   },
 }

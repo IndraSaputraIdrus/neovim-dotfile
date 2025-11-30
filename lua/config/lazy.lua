@@ -17,19 +17,30 @@ vim.opt.rtp:prepend(lazypath)
 
 -- Setup 'LazyFile' event
 local Event = require('lazy.core.handler.event')
-Event.mappings.LazyFile = { id = 'LazyFile', event = { "BufReadPost", "BufNewFile", "BufWritePre" } }
+Event.mappings.LazyFile = { id = 'LazyFile', event = { 'BufReadPost', 'BufNewFile', 'BufWritePre' } }
 Event.mappings['User LazyFile'] = Event.mappings.LazyFile
 
--- Setup lazy.nvim
 require('lazy').setup({
   spec = {
-    -- import your plugins
     { import = 'plugins' },
   },
-  -- Configure any other settings here. See the documentation for more details.
-  -- colorscheme that will be used when installing plugins.
-  install = { colorscheme = { 'minihues-purple' } },
-  -- automatically check for plugin updates
   checker = { enabled = true },
+  change_detection = { notify = false },
+  performance = {
+    rtp = {
+      disabled_plugins = {
+        'gzip',
+        'netrwPlugin',
+        'rplugin',
+        'tarPlugin',
+        'tohtml',
+        'tutor',
+        'zipPlugin',
+      },
+    },
+  },
+  rocks = {
+    enabled = false,
+    hererocks = false,
+  },
 })
-
