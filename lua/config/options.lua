@@ -39,13 +39,9 @@ o.cmdheight = 1 -- height of the command bar, default: 1
 
 -- special UI symbols
 o.list = true -- show invisible characters.
-o.listchars = 'extends:…,nbsp:␣,precedes:…,tab:> ,trail:·'
+-- o.listchars = 'extends:…,nbsp:␣,precedes:…,tab:> ,trail:·'
+o.listchars = 'extends:…,nbsp:␣,precedes:…,tab:  ,trail:·'
 o.fillchars = 'eob: ,fold:┄,foldclose:,foldopen:'
-
--- statusline
--- o.laststatus = 0 -- never a statusline
--- o.ruler = false -- no position info at cmdline
--- o.showmode = false -- disable showing modes in command line since it's already in the status line
 
 -- splitting
 o.splitbelow = true -- splitting a new window below the current one

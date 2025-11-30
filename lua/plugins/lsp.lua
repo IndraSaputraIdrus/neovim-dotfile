@@ -17,6 +17,10 @@ return {
         underline = { severity = vim.diagnostic.severity.ERROR },
       })
 
+      vim.keymap.set('n', 'grd', vim.lsp.buf.definition)
+      vim.keymap.set('n', 'grD', vim.lsp.buf.declaration)
+      vim.keymap.set('n', 'gri', vim.lsp.buf.implementation)
+
       local servers = {
         'lua_ls',
         'vtsls',
