@@ -1,36 +1,13 @@
-return {
+return { -- Highlight, edit, and navigate code
   'nvim-treesitter/nvim-treesitter',
-  version = false,
-  lazy = false,
-  branch = 'main',
-  build = ':TSUpdate',
   config = function()
-    require('nvim-treesitter').install({
-      'javascript',
-      'typescript',
-      'html',
-      'css',
-      'svelte',
-      'javascriptreact',
-      'typescriptreact',
-      'json',
-      'go',
-    })
-
+    local filetypes =
+      { 'bash', 'c', 'diff', 'html', 'lua', 'luadoc', 'markdown', 'markdown_inline', 'query', 'vim', 'vimdoc' }
+    require('nvim-treesitter').install(filetypes)
     vim.api.nvim_create_autocmd('FileType', {
-      group = vim.api.nvim_create_augroup('Treesitter', { clear = true }),
-      callback = function(ev)
-        local filetype = ev.match
-        local lang = vim.treesitter.language.get_lang(filetype)
-        if vim.treesitter.language.add(lang) then
-          -- intentation
-          if vim.treesitter.query.get(filetype, 'indents') then
-            vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
-          end
-
-          -- highlighting
-          vim.treesitter.start()
-        end
+      pattern = filetypes,
+      callback = function()
+        vim.treesitter.start()
       end,
     })
   end,

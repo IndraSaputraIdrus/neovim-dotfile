@@ -1,6 +1,5 @@
 return {
   'mfussenegger/nvim-lint',
-  event = 'LazyFile',
   config = function()
     local lint = require('lint')
     lint.linters_by_ft = {
